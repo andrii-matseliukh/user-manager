@@ -1,0 +1,86 @@
+<div class="card border-info my-3">
+    <div class="card-header bg-info text-white font-weight-bold">Add user</div>
+
+    <div class="card-body text-primary">
+        <form class="" [formGroup]="userForm">
+
+
+            <div class="col-md-12">
+                <div *ngIf="validationSummaryErrors && validationSummaryErrors.length > 0" class="alert alert-danger">
+                    <div class="validation-summary">{{ validationSummaryErrors }}</div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="emailId" class="col-md-2 control-label">Email</label>
+
+                    <div class="col-md-12">
+                        <input type="email" class="form-control" formControlName="email" 
+                            id="emailId" placeholder="Enter..." />
+
+                        <div *ngIf="userForm.controls.email.dirty">
+                            <div *ngIf="userForm.controls.email.errors?.required" class="alert alert-danger">Provide an
+                                email.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="roleNameId" class="col-md-2 control-label">Role</label>
+
+                    <div class="col-md-12">
+                        <select class="custom-select" formControlName="roleName" id="roleNameId">
+                            <option *ngFor="let role of systemRoles" [ngValue]="role">
+                                {{ role }}
+                            </option>
+                        </select>
+
+                        <div *ngIf="userForm.controls.roleName.dirty">
+                            <div *ngIf="userForm.controls.roleName.errors?.required" class="alert alert-danger">Select
+                                an role.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="emailId" class="col-md-6 control-label">Password</label>
+
+                    <div class="col-md-12">
+                        <input type="password" class="form-control" formControlName="password" id="passwordId"
+                            placeholder="Enter..." />
+
+                        <div *ngIf="userForm.controls.password.dirty">
+                            <div *ngIf="userForm.controls.password.errors?.required" class="alert alert-danger py-1">
+                                Select a passsword.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label for="confirmPasswordId" class="col-md-6 control-label">Confirm Password</label>
+
+                    <div class="col-md-12">
+                        <input type="password" class="form-control" formControlName="confirmPassword"
+                            id="confirmPasswordId" placeholder="Enter..." />
+
+                        <div *ngIf="userForm.controls.confirmPassword.dirty">
+                            <div *ngIf="userForm.errors?.notSame" class="alert alert-danger py-1">Password & Confirm
+                                Password does not match.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-success" (click)="createUser()"
+                        [disabled]='!userForm.valid'>Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

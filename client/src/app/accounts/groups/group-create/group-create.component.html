@@ -1,0 +1,60 @@
+<div class="card border-info my-3">
+    <div class="card-header bg-info text-white font-weight-bold">Add a group</div>
+
+    <div class="card-body text-primary">
+        <form class="" [formGroup]="groupForm">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="nameId" class="col-md-12 control-label">Name</label>
+    
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" formControlName="name" 
+                                id="nameId" placeholder="Enter..." />
+    
+                            <div *ngIf="groupForm.controls.name.dirty">
+                                <div *ngIf="groupForm.controls.name.errors?.required" 
+                                    class="alert alert-danger">
+                                    Provide a name
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="descriptionId" class="col-md-12 control-label">Description</label>
+    
+                        <div class="col-md-12">
+                            <textarea rows="3" cols="3" class="form-control" formControlName="description" 
+                                id="descriptionId" placeholder="Enter..." >
+                            </textarea>
+    
+                            <div *ngIf="groupForm.controls.description.dirty">
+                                <div *ngIf="groupForm.controls.description.errors?.required" class="alert alert-danger">
+                                    Provide a description.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-success" (click)="createGroup()"
+                            [disabled]='!groupForm.valid'>
+                            Create
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</div>

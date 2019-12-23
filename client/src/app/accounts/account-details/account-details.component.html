@@ -1,0 +1,29 @@
+<h1 class="h2 py-2">Account Info</h1>
+
+<hr />
+
+<div class="btn-group py-2" *ngIf="currentAccount">
+    <a [routerLink]="['/account', currentAccount.id, 'update']" class="btn btn-info">Edit</a>
+    <button *ngIf="authService.userAvailable && authService.user.profile.role == 'admin'" 
+        class="btn btn-danger" type="button" (click)="onDeleteUser()">
+        Delete
+    </button>
+</div>
+
+<dl *ngIf="currentAccount">
+    <dt>First Name:</dt>
+    <dd>{{ currentAccount.firstName }}</dd>
+
+    <dt>Last Name:</dt>
+    <dd>{{ currentAccount.lastName }}</dd>
+
+    <dt>Email</dt>
+    <dd>{{ currentAccount.email }}</dd>
+
+    <dt *ngIf="currentAccount.group">Group:</dt>
+    <dd *ngIf="currentAccount.group">{{ currentAccount.group.name }}</dd>
+
+    <dt>Description:</dt>
+    <dd>{{ currentAccount.description }}</dd>
+
+</dl>

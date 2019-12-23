@@ -1,0 +1,68 @@
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+
+        <div class="d-flex">
+            <a class="navbar-brand" [routerLink]="['/']">
+                User Manager
+            </a>
+
+            <ul class="navbar-nav bd-navbar-nav flex-row ml-3">
+                <li *ngIf="authService.userAvailable && authService.user.profile.role == 'admin'"
+                 class="nav-item" routerLinkActive="font-weight-bold">
+                    <a class="nav-link" [routerLink]="['/accounts']">Accounts</a>
+                </li>
+
+                <li *ngIf="authService.userAvailable && authService.user.profile.role == 'admin'" class="nav-item ml-3"
+                    routerLinkActive="font-weight-bold">
+                    <a class="nav-link" [routerLink]="['/groups']">Groups</a>
+                </li>
+
+                <li *ngIf="authService.userAvailable && authService.user.profile.role == 'user'" class="nav-item ml-3" 
+                    routerLinkActive="font-weight-bold">
+                    <a class="nav-link" [routerLink]="['/account']">Account</a>
+                </li>
+            </ul>
+        </div>
+        
+        <nav>
+            <ul class="navbar-nav mr-auto flex-row">
+                <li *ngIf="!authService.userAvailable; else Logout" class="nav-item">
+                    <button class="nav-link btn btn-link" (click)="login()">Login</button>
+                </li>
+
+                <ng-template #Logout>
+                    <li class="nav-item ml-3">
+                        <span class="nav-link">{{ authService.user.profile.email }}</span>
+                    </li>
+
+                    <li class="nav-item ml-3">
+                        <button class="nav-link btn btn-link" (click)="signOut()">Logout</button>
+                    </li>
+                </ng-template>
+
+            </ul>
+        </nav>
+
+    </div>
+</nav>
+
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+
+<!-- <div>
+    <button (click)='onLogin()'>Login</button>
+    <button (click)='onCallAPI()'>Call API</button>
+    <button (click)='onRenewToken()'>Renew Token</button>
+    <button (click)='onLogout()'>Logout</button>
+</div>
+
+<pre>{{currentUserJson}}</pre>
+
+<div>
+    <h2>Messages</h2>
+    <ul>
+        <li *ngFor='let msg of messages'>{{msg}}</li>
+    </ul>
+</div> -->

@@ -1,0 +1,34 @@
+
+<h1 class="h3 py-3">All accounts</h1>
+
+<div *ngIf="accounts && accounts.length; else showNoAccounts">
+    <table class='table' *ngIf='accounts && accounts.length'>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+            <tr *ngFor='let item of accounts'>
+                <td>{{ item.email }}</td>
+                <td>{{ item.firstName + item.lastName}}</td>
+                <td>{{ item.description }}</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-outline-info" [routerLink]="['/account', item.id]">Details</a>
+                        <a class="btn btn-outline-warning" [routerLink]="['/account', item.id, 'update']">Edit</a>
+                        <button class="btn btn-outline-danger" type="button" (click)="onDeleteUser(item.id)">Delete</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    
+    </table>
+</div>
+<ng-template #showNoAccounts>
+    <p class="text-muted">No accounts found</p>
+</ng-template>

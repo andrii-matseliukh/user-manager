@@ -1,0 +1,11 @@
+<div class="my-3">
+    <div class="btn-group">
+        <a class="btn btn-success" [routerLink]="['/groups/create']">
+            Add Group
+        </a>
+    </div>
+</div>
+
+<div *ngIf='groups && groups.length'>
+    <a *ngFor='let item of groups' [routerLink]="['/groups', item.id]" class="btn btn-outline-primary btn-lg ml-1">{{ item.name }}</a>
+</div>

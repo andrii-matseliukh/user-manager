@@ -1,0 +1,14 @@
+<div *ngIf="currentGroup" class="mb-5 mt-2">
+    <h1 class="h2">Group {{ currentGroup.name }}</h1>
+
+    <p class="text-muted">
+        {{ currentGroup.description }}
+    </p>
+
+    <a [routerLink]="['/groups', currentGroup.id, 'update']" class="btn btn-info btn-sm">
+        Update
+    </a>
+</div>
+<hr />
+
+<app-accounts-list [accounts]="accounts"></app-accounts-list>

@@ -1,0 +1,106 @@
+<div class="card border-info my-3">
+        <div class="card-header bg-info text-white font-weight-bold">Add an account</div>
+    
+        <div class="card-body text-primary">
+            <form class="" [formGroup]="accountForm">
+
+                <div class="col-md-12">
+                    <div *ngIf="validationSummaryErrors && validationSummaryErrors.length > 0" class="alert alert-danger">
+                        <div class="validation-summary">{{ validationSummaryErrors }}</div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="groupId" class="col-md-12 control-label">Group</label>
+        
+                            <div class="col-md-12">
+                                <select class="custom-select" formControlName="groupId" 
+                                    *ngIf="groups && groups.length"
+                                    id="groupId"> 
+                                    <option disabled selected value="">Please select value</option>                                  
+                                    <option *ngFor="let item of groups" [ngValue]="item.id">
+                                        {{ item.name }}
+                                    </option>
+                                </select>
+        
+                                <div *ngIf="accountForm.controls.groupId.dirty">
+                                    <div *ngIf="accountForm.controls.groupId.errors?.required" class="alert alert-danger">Select an role.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                  
+                </div>
+                
+
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label for="firstNameId" class="col-md-12 control-label">Frist Name</label>
+        
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" formControlName="firstName" 
+                                    id="firstNameId" placeholder="Enter..." />
+        
+                                <div *ngIf="accountForm.controls.firstName.dirty">
+                                    <div *ngIf="accountForm.controls.firstName.errors?.required" class="alert alert-danger py-1">
+                                        Provide a first name.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lastNameId" class="col-md-12 control-label">Last Name</label>
+        
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" formControlName="lastName" 
+                                    id="lastNameId" placeholder="Enter..." />
+        
+                                <div *ngIf="accountForm.controls.lastName.dirty">
+                                    <div *ngIf="accountForm.controls.lastName.errors?.required" class="alert alert-danger py-1">
+                                        Provide a last name.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="descriptionId" class="col-md-12 control-label">Description</label>
+        
+                            <div class="col-md-12">
+                                <textarea rows="3" cols="3" class="form-control" formControlName="description" 
+                                    id="descriptionId" placeholder="Enter..." >
+                                </textarea>
+        
+                                <div *ngIf="accountForm.controls.description.dirty">
+                                    <div *ngIf="accountForm.controls.description.errors?.required" class="alert alert-danger">
+                                        Provide an account description.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group col-md-12">
+                            <button type="button" class="btn btn-success" (click)="onUpdateAccount()"
+                                [disabled]='!accountForm.valid'>
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
