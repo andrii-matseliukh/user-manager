@@ -23,6 +23,7 @@ namespace UserManagerCore.Dtos.Account
         [MaxLength(50)]
         [EmailAddress]
         public string Email { get; set; }
+        public string ExtraValue { get; set;}
         
         
         public int BaseValue { get; set; }
