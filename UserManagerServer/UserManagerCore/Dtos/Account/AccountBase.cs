@@ -24,6 +24,7 @@ namespace UserManagerCore.Dtos.Account
         [EmailAddress]
         public string Email { get; set; }
         
-        public string BaseValue { get; set; }
+        
+        public int BaseValue { get; set; }
     }
 }
